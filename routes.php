@@ -7,9 +7,11 @@ require_once "controllers/todoes.php";
 
 function wp_learn_register_routes()
 {
+    $prefix_api = "delirio-api";
+    $vertion = "v1";
 
     register_rest_route(
-        'custom-api/v1',
+        "$prefix_api/$vertion",
         '/status/',
         array(
             'methods' => 'GET',
@@ -21,7 +23,7 @@ function wp_learn_register_routes()
     );
 
     register_rest_route(
-        'custom-api/v1',
+        "$prefix_api/$vertion",
         '/jobs/',
         array(
             'methods' => 'GET',
@@ -33,7 +35,7 @@ function wp_learn_register_routes()
     );
 
     register_rest_route(
-        'custom-api/v1',
+        "$prefix_api/$vertion",
         '/employers/',
         array(
             'methods' => 'GET',
@@ -45,7 +47,7 @@ function wp_learn_register_routes()
     );
 
     register_rest_route(
-        'custom-api/v1',
+        "$prefix_api/$vertion",
         '/companies/',
         array(
             'methods' => 'GET',
@@ -57,7 +59,7 @@ function wp_learn_register_routes()
     );
 
     register_rest_route(
-        'custom-api/v1',
+        "$prefix_api/$vertion",
         '/projects/',
         array(
             'methods' => 'GET',
@@ -69,7 +71,7 @@ function wp_learn_register_routes()
     );
 
     register_rest_route(
-        'custom-api/v1',
+        "$prefix_api/$vertion",
         '/to-does/',
         array(
             'methods' => 'GET',
@@ -81,7 +83,7 @@ function wp_learn_register_routes()
     );
 
     register_rest_route(
-        'custom-api/v1',
+        "$prefix_api/$vertion",
         '/get-rol',
         array(
             'methods' => 'GET',
@@ -93,7 +95,7 @@ function wp_learn_register_routes()
     );
 
     register_rest_route(
-        'custom-api/v1',
+        "$prefix_api/$vertion",
         '/companies/',
         array(
             'methods' => 'POST',
@@ -103,7 +105,7 @@ function wp_learn_register_routes()
     );
 
     register_rest_route(
-        'custom-api/v1',
+        "$prefix_api/$vertion",
         '/employers/',
         array(
             'methods' => 'POST',
@@ -113,7 +115,7 @@ function wp_learn_register_routes()
     );
 
     register_rest_route(
-        'custom-api/v1',
+        "$prefix_api/$vertion",
         '/projects/',
         array(
             'methods' => 'POST',
@@ -124,7 +126,7 @@ function wp_learn_register_routes()
 
 
     register_rest_route(
-        'custom-api/v1',
+        "$prefix_api/$vertion",
         '/to-does/',
         array(
             'methods' => 'POST',
@@ -134,7 +136,7 @@ function wp_learn_register_routes()
     );
 
     register_rest_route(
-        'custom-api/v1',
+        "$prefix_api/$vertion",
         '/to-does/admin/(?P<id>\d+)',
         array(
             'methods' => 'PUT',
@@ -144,7 +146,7 @@ function wp_learn_register_routes()
     );
 
     register_rest_route(
-        'custom-api/v1',
+        "$prefix_api/$vertion",
         '/to-does/(?P<id>\d+)',
         array(
             'methods' => 'PUT',
