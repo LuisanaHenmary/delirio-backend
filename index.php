@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: delirio-api
- * Version: 1.0.0
+ * Version: 1.2.0
  */
 
 require_once "controllers/tables.php";

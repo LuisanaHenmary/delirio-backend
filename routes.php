@@ -2,7 +2,6 @@
 
 require_once "controllers/employers.php";
 require_once "controllers/companies.php";
-require_once "controllers/projects.php";
 require_once "controllers/todoes.php";
 
 function wp_learn_register_routes()
@@ -48,6 +47,30 @@ function wp_learn_register_routes()
 
     register_rest_route(
         "$prefix_api/$vertion",
+        '/to-does/employer/(?P<id>\d+)',
+        array(
+            'methods' => 'GET',
+            'callback' => 'wp_get_todoes_per_id_user_employer',
+            'permission_callback' => function () {
+                return is_user_logged_in(); // Asegurarse de que el usuario esté autenticado
+            }
+        )
+    );
+
+    register_rest_route(
+        "$prefix_api/$vertion",
+        '/to-does/company/(?P<id>\d+)',
+        array(
+            'methods' => 'GET',
+            'callback' => 'wp_get_todoes_per_id_user_company',
+            'permission_callback' => function () {
+                return is_user_logged_in(); // Asegurarse de que el usuario esté autenticado
+            }
+        )
+    );
+
+    register_rest_route(
+        "$prefix_api/$vertion",
         '/companies/',
         array(
             'methods' => 'GET',
@@ -58,17 +81,6 @@ function wp_learn_register_routes()
         )
     );
 
-    register_rest_route(
-        "$prefix_api/$vertion",
-        '/projects/',
-        array(
-            'methods' => 'GET',
-            'callback' => 'wp_get_all_projects',
-            'permission_callback' => function () {
-                return is_user_logged_in(); // Asegurarse de que el usuario esté autenticado
-            }
-        )
-    );
 
     register_rest_route(
         "$prefix_api/$vertion",
@@ -110,16 +122,6 @@ function wp_learn_register_routes()
         array(
             'methods' => 'POST',
             'callback' => 'wp_add_employer',
-            'permission_callback' => 'wp_check_permission'
-        )
-    );
-
-    register_rest_route(
-        "$prefix_api/$vertion",
-        '/projects/',
-        array(
-            'methods' => 'POST',
-            'callback' => 'wp_add_project',
             'permission_callback' => 'wp_check_permission'
         )
     );
