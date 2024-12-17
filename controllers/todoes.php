@@ -21,6 +21,38 @@ function wp_get_all_todoes()
     return $results;
 }
 
+function wp_get_todoes_per_id_user_employer($request)
+{
+    global $wpdb;
+    $table_employers = $wpdb->prefix . "employers";
+    $table_todoes = $wpdb->prefix . "todoes";
+    $id = $request['id'];
+
+    $result = $wpdb->get_results("SELECT * FROM $table_employers WHERE id_user=$id");
+
+    $id_employer = $result[0]->id_employer;
+
+    $todoes = $wpdb->get_results("SELECT * FROM $table_todoes WHERE id_employer=$id_employer");
+
+    return $todoes;
+}
+
+function wp_get_todoes_per_id_user_company($request)
+{
+    global $wpdb;
+    $table_companies = $wpdb->prefix . "companies";
+    $table_todoes = $wpdb->prefix . "todoes";
+    $id = $request['id'];
+
+    $result = $wpdb->get_results("SELECT * FROM $table_companies WHERE id_user=$id");
+
+    $id_company = $result[0]->id_company;
+
+    $todoes = $wpdb->get_results("SELECT * FROM $table_todoes WHERE id_company=$id_company");
+
+    return $todoes;
+}
+
 function wp_add_todo($request)
 {
     global $wpdb;
@@ -40,7 +72,9 @@ function wp_add_todo($request)
         $info
     );
 
-    return new WP_REST_Response(array('to-do' => $info), 200);
+    $id_todo = $wpdb->insert_id;
+
+    return new WP_REST_Response(array('to-do' => $info, "id" => $id_todo), 200);
 }
 
 function wp_update_todo_admin($request)
