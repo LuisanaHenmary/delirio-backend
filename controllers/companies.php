@@ -1,5 +1,16 @@
 <?php
 
+function wp_get_all_plans()
+{
+    global $wpdb;
+    $table_plans = $wpdb->prefix . "plans";
+
+    $results = $wpdb->get_results("SELECT * FROM $table_plans");
+
+    return $results;
+}
+
+
 function wp_get_all_companies()
 {
     global $wpdb;
@@ -19,7 +30,8 @@ function wp_add_company($request)
         'nit' => $request['nit'],
         'name_company' => $request['name'],
         'phone' => $request['phone'],
-        'id_user' => $request['id_user']
+        'id_user' => $request['id_user'],
+        'id_plan' => $request['id_user']
     );
 
     $wpdb->insert(

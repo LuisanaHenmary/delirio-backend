@@ -27,15 +27,15 @@ function wp_setup_api_tables()
             "level" => ""
         ),
         array(
-            "name" => "Logos",
+            "name" => "Logos - Basico",
             "level" => "Basico"
         ),
         array(
-            "name" => "Logos",
+            "name" => "Logos - Medio",
             "level" => "Medio"
         ),
         array(
-            "name" => "Logos",
+            "name" => "Logos - Full",
             "level" => "Full"
         ),
     );

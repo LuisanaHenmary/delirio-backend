@@ -23,10 +23,34 @@ function wp_learn_register_routes()
 
     register_rest_route(
         "$prefix_api/$vertion",
+        '/types/',
+        array(
+            'methods' => 'GET',
+            'callback' => 'wp_get_all_types',
+            'permission_callback' => function () {
+                return is_user_logged_in(); // Asegurarse de que el usuario esté autenticado
+            }
+        )
+    );
+
+    register_rest_route(
+        "$prefix_api/$vertion",
         '/jobs/',
         array(
             'methods' => 'GET',
             'callback' => 'wp_get_all_jobs',
+            'permission_callback' => function () {
+                return is_user_logged_in(); // Asegurarse de que el usuario esté autenticado
+            }
+        )
+    );
+
+    register_rest_route(
+        "$prefix_api/$vertion",
+        '/plans/',
+        array(
+            'methods' => 'GET',
+            'callback' => 'wp_get_all_plans',
             'permission_callback' => function () {
                 return is_user_logged_in(); // Asegurarse de que el usuario esté autenticado
             }

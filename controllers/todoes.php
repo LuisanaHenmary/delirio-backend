@@ -11,6 +11,16 @@ function wp_get_all_status()
     return $results;
 }
 
+function wp_get_all_types()
+{
+    global $wpdb;
+    $table_to_do_types = $wpdb->prefix . "to_do_types";
+
+    $results = $wpdb->get_results("SELECT * FROM $table_to_do_types");
+
+    return $results;
+}
+
 function wp_get_all_todoes()
 {
     global $wpdb;
@@ -63,8 +73,16 @@ function wp_add_todo($request)
         'id_status' => 1,
         'id_employer' => $request['id_employer'],
         'id_company' => $request['id_company'],
-        'id_project' => $request['id_project'],
-        'expired' => $request['expired']
+        'id_type' => $request['id_type'],
+        'by_instragram' => $request['by_instragram'],
+        'by_facebook' => $request['by_facebook'],
+        'by_tiktok' => $request['by_tiktok'],
+        'assignment_date' => $request['assignment_date'],
+        'delivery_date' => $request['delivery_date'],
+        'description_todo' => $request['description_todo'],
+        'content_todo' => $request['content_todo'],
+        'material_link' => $request['material_link'],
+        'copy_text' => $request['copy_text'],
     );
 
     $wpdb->insert(
@@ -86,14 +104,16 @@ function wp_update_todo_admin($request)
     $id = $request['id'];
     $title = $request['title'];
     $id_employer = $request['id_employer'];
-    $expired = $request['expired'];
+    $assignment_date = $request['assignment_date'];
+    $delivery_date = $request['delivery_date'];
 
     $wpdb->update(
         $table_todoes,
         array(
             'title' => $title,
             'id_employer' => $id_employer,
-            'expired' => $expired
+            'assignment_date' => $assignment_date,
+            'delivery_date' => $delivery_date,
         ),
         array('id_todo' => $id),
         array(
