@@ -3,7 +3,7 @@
 function wp_setup_api_tables()
 {
     global $wpdb;
-    $status_value = array("Sin contenido", "Pendiente por aprobación", "Aprobado", "En proceso", "Publicado");
+    $status_value = array("Sin contenido", "Pendiente Aprob", "Aprobado", "En proceso", "Publicado");
     $jobs_value = array("Diseñador grafico", "Administrador", "Fotografo");
     $plans_value = array(
         array(

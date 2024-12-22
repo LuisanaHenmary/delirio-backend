@@ -31,7 +31,7 @@ function wp_add_company($request)
         'name_company' => $request['name'],
         'phone' => $request['phone'],
         'id_user' => $request['id_user'],
-        'id_plan' => $request['id_user']
+        'id_plan' => $request['id_plan']
     );
 
     $wpdb->insert(

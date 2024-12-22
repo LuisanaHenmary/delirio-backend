@@ -102,29 +102,42 @@ function wp_update_todo_admin($request)
     $table_todoes = $wpdb->prefix . "todoes";
 
     $id = $request['id'];
-    $title = $request['title'];
-    $id_employer = $request['id_employer'];
-    $assignment_date = $request['assignment_date'];
-    $delivery_date = $request['delivery_date'];
 
+    $info = array(
+        'title' => $request['title'],
+        'id_employer' => $request['id_employer'],
+        'assignment_date' => $request['assignment_date'],
+        'delivery_date' => $request['delivery_date'],
+        'material_link' => $request['material_link'],
+        'description_todo' => $request['description_todo'],
+        'copy_text' => $request['copy_text'],
+        'by_instragram' => $request['by_instragram'],
+        'by_facebook' => $request['by_facebook'],
+        'by_tiktok' => $request['by_tiktok'],
+    );
+
+    
     $wpdb->update(
         $table_todoes,
-        array(
-            'title' => $title,
-            'id_employer' => $id_employer,
-            'assignment_date' => $assignment_date,
-            'delivery_date' => $delivery_date,
-        ),
+        $info,
         array('id_todo' => $id),
         array(
             '%s',
-            '%d'
+            '%d',
+            '%s',
+            '%s',
+            '%s',
+            '%s',
+            '%s',
+            '%d',
+            '%d',
+            '%d',
+
         ),
         array('%d')
     );
 
-
-    return new WP_REST_Response(array('response' => 'Actaulizacion realizada'), 200);
+    return new WP_REST_Response(array('response' => "La informacio se actualizo con exito"), 200);
 }
 
 function wp_update_todo_employer($request)
@@ -135,16 +148,19 @@ function wp_update_todo_employer($request)
 
     if (current_user_can('edit_wp_todos')) {
         $id = $request['id'];
-        $id_status = $request['id_status'];
 
         $wpdb->update(
             $table_todoes,
             array(
-                'id_status' => $id_status,
+                'id_status' => $request['id_status'],
+                'copy_text' => $request['copy_text'],
+                'content_todo' => $request['content_todo'],
             ),
             array('id_todo' => $id),
             array(
-                '%d'    // value2
+                '%d',
+                '%s',
+                '%s',
             ),
             array('%d')
         );
