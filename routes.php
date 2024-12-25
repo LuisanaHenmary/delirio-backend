@@ -132,6 +132,18 @@ function wp_learn_register_routes()
 
     register_rest_route(
         "$prefix_api/$vertion",
+        '/get-plan/(?P<id_user>\d+)',
+        array(
+            'methods' => 'GET',
+            'callback' => 'get_plan',
+            'permission_callback' => function () {
+                return is_user_logged_in(); // Asegurarse de que el usuario esté autenticado
+            }
+        )
+    );
+
+    register_rest_route(
+        "$prefix_api/$vertion",
         '/companies/',
         array(
             'methods' => 'POST',

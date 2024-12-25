@@ -42,3 +42,21 @@ function wp_add_company($request)
 
     return new WP_REST_Response(array('company' => $info), 200);
 }
+
+
+function get_plan($request)
+{
+    $id = $request['id_user'];
+    global $wpdb;
+    $table_plans = $wpdb->prefix . "plans";
+    $table_companies = $wpdb->prefix . "companies";
+
+    $results = $wpdb->get_results("
+        SELECT  p.name_plan, p.level_plan
+        FROM {$table_plans} p
+        INNER JOIN {$table_companies} c ON p.id_plan = c.id_plan
+        WHERE c.id_user = {$id}
+        ");
+
+    return rest_ensure_response($results);
+}
