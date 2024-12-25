@@ -171,3 +171,23 @@ function wp_update_todo_employer($request)
         return new WP_REST_Response(array('response' => 'No tienes permiso'), 400);
     }
 }
+
+function wp_delete_todo($request)
+{
+
+    global $wpdb;
+    $table_todoes = $wpdb->prefix . "todoes";
+
+    $id = intval($request['id']);
+
+    $deleted = $wpdb->delete($table_todoes, array('id_todo' => $id), array('%d'));
+
+    if ($deleted === false) {
+        return new WP_Error('delete_failed', 'No se pudo borrar la fila.', array('status' => 500));
+    }
+
+    return rest_ensure_response(array(
+        'success' => true,
+        'message' => 'Fila eliminada correctamente.'
+    ));
+}

@@ -44,3 +44,23 @@ function wp_get_all_jobs()
 
     return $results;
 }
+
+function wp_delete_employer($request)
+{
+
+    global $wpdb;
+    $table_users = $wpdb->users;
+
+    $id = intval($request['id']);
+
+    $deleted = $wpdb->delete($table_users, array('id' => $id), array('%d'));
+
+    if ($deleted === false) {
+        return new WP_Error('delete_failed', 'No se pudo borrar la fila.', array('status' => 500));
+    }
+
+    return rest_ensure_response(array(
+        'success' => true,
+        'message' => 'Fila eliminada correctamente.'
+    ));
+}

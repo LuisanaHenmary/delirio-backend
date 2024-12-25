@@ -193,7 +193,34 @@ function wp_learn_register_routes()
         )
     );
 
+    register_rest_route(
+        "$prefix_api/$vertion",
+        '/to-does/delete/(?P<id>\d+)',
+        array(
+            'methods' => 'DELETE',
+            'callback' => 'wp_delete_todo',
+            'permission_callback' => 'wp_check_permission'
+        )
+    );
     
-    
+    register_rest_route(
+        "$prefix_api/$vertion",
+        '/employers/delete/(?P<id>\d+)',
+        array(
+            'methods' => 'DELETE',
+            'callback' => 'wp_delete_employer',
+            'permission_callback' => 'wp_check_permission'
+        )
+    );
+
+    register_rest_route(
+        "$prefix_api/$vertion",
+        '/companies/delete/(?P<id>\d+)',
+        array(
+            'methods' => 'DELETE',
+            'callback' => 'wp_delete_company',
+            'permission_callback' => 'wp_check_permission'
+        )
+    );
     
 }
