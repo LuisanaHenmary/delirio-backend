@@ -4,8 +4,11 @@ function wp_get_all_employers()
 {
     global $wpdb;
     $table_employers = $wpdb->prefix . "employers";
+    $table_jobs = $wpdb->prefix . "jobs";
 
-    $results = $wpdb->get_results("SELECT * FROM $table_employers");
+    $results = $wpdb->get_results("SELECT  *
+        FROM {$table_jobs} j
+        INNER JOIN {$table_employers} e ON j.id_job = e.id_job");
 
     return $results;
 }
