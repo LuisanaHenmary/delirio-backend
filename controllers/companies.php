@@ -15,8 +15,12 @@ function wp_get_all_companies()
 {
     global $wpdb;
     $table_companies = $wpdb->prefix . "companies";
+    $table_plans = $wpdb->prefix . "plans";
 
-    $results = $wpdb->get_results("SELECT * FROM $table_companies");
+    $results = $wpdb->get_results("
+        SELECT  *
+        FROM {$table_plans} p
+        INNER JOIN {$table_companies} c ON p.id_plan = c.id_plan");
 
     return $results;
 }
